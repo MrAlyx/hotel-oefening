@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation index{% endblock %}
+
+{% block body %}
+    <h1>Reservation index</h1>
+    <a href="{{ path('desc_index') }}"><button class="btn">Newest First</button></a>
+    <a href="{{ path('asc_index') }}"><button class="btn">Oldest First</button></a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CheckInDate</th>
+                <th>CheckOutDate</th>
+                <th>CheckedIn</th>
+                <th>CheckedOut</th>
+                <th>ReservationDate</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.CheckInDate ? reservation.CheckInDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reservation.CheckOutDate ? reservation.CheckOutDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ reservation.CheckedIn ? 'Yes' : 'No' }}</td>
+                <td>{{ reservation.CheckedOut ? 'Yes' : 'No' }}</td>
+                <td>{{ reservation.ReservationDate ? reservation.ReservationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
+                    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('reservation_new') }}">Create new</a>
+{% endblock %}

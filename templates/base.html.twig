@@ -6,14 +6,51 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+            <link rel = "stylesheet"
+                  href = "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+                  integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+                  crossorigin = "anonymous">
         {% endblock %}
 
         {% block javascripts %}
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
+        <style>
+            .wrapper {
+                margin-right: auto; /* 1 */
+                margin-left:  auto; /* 1 */
+
+                max-width: 960px; /* 2 */
+
+                padding-right: 10px; /* 3 */
+                padding-left:  10px; /* 3 */
+            }
+        </style>
     </head>
     <body>
+    <nav class = "navbar navbar-expand-sm bg-secondary navbar-dark">
+        <a class = "navbar-brand" href = "#">
+            <img src = "https://www.tutorialspoint.com/bootstrap/images/logo.png"
+                 style = "width:120px;" alt = "">
+        </a>
+        <ul class = "navbar-nav">
+            <li class = "nav-item">
+                <a class = "nav-link" href = "{{ path('bill_index') }}">Bill</a>
+            </li>
+            <li class = "nav-item">
+                <a class = "nav-link" href = "{{ path('reservation_index') }}">Reservation</a>
+            </li>
+            <li class = "nav-item">
+                <a class = "nav-link" href = "{{ path('room_index') }}">Room</a>
+            </li>
+            <li class = "nav-item">
+                <a class = "nav-link" href = "{{ path('guest_index') }}">Guest</a>
+            </li>
+        </ul>
+
+    </nav>
+    <div class="wrapper">
         {% block body %}{% endblock %}
+    </div>
     </body>
 </html>
